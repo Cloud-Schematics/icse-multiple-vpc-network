@@ -223,7 +223,7 @@ variable "security_groups" {
             flatten([
               # For each rule, return true if using more than one `tcp`, `udp`, `icmp block
               for rule in group.rules :
-              true if length([for type in ["tcp", "udp", "icmp"] : true if rule[type] != null]) > 1
+              true if length([for type in ["tcp", "udp", "icmp"] : true if lookup(rule, type, null) != null]) > 1
             ])
           )
         ) != 0
@@ -274,4 +274,4 @@ variable "transit_gateway_connections" {
   default     = ["management", "workload"]
 }
 
-##############################################################################
+#############################################################################
