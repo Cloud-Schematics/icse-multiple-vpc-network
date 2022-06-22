@@ -133,7 +133,7 @@ module "vpn_gateway" {
   resource_group_id = var.resource_group_id
   tags              = var.tags
   vpc_id            = ibm_is_vpc.vpc.id
-  subnet_id         = var.vpn_gateway.use_vpn_gateway ? module.gateway_subnets.subnets[0].id : null
+  subnet_id         = lookup(var.vpn_gateway, "use_vpn_gateway", null) == true ? module.gateway_subnets.subnets[0].id : null
   vpn_gateway       = var.vpn_gateway
 }
 
