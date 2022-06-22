@@ -1,0 +1,14 @@
+{
+  "name": "acceptance_tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tfx pattern.test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tfxjs": "^0.6.2"
+  }
+}
