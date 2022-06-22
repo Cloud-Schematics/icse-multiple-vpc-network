@@ -1,6 +1,6 @@
 # IBM Cloud Solution Engineering Multiple VPC Network
 
-Create multiple VPC networks in a single region connected witha transit gateway.
+Create multiple VPC networks in a single region connected with a transit gateway.
 
 ---
 
