@@ -5,16 +5,16 @@
 output "networks" {
   description = "VPC network information"
   value = {
-    for vpc in module.vpcs :
-    (vpc.vpc_name) => {
-      id               = vpc.vpc_id
-      crn              = vpc.vpc_crn
-      name             = vpc.vpc_name
-      subnet_zone_list = vpc.subnet_zone_list
-      network_acls     = vpc.network_acls
-      public_gateways  = vpc.public_gateways
-      security_groups  = vpc.security_groups
-      vpn_gateway      = vpc.vpn_gateway
+    for vpc in var.vpcs :
+    (vpc.prefix) => {
+      id               = module.vpcs[vpc.prefix].vpc_id
+      crn              = module.vpcs[vpc.prefix].vpc_crn
+      name             = module.vpcs[vpc.prefix].vpc_name
+      subnet_zone_list = module.vpcs[vpc.prefix].subnet_zone_list
+      network_acls     = module.vpcs[vpc.prefix].network_acls
+      public_gateways  = module.vpcs[vpc.prefix].public_gateways
+      security_groups  = module.vpcs[vpc.prefix].security_groups
+      vpn_gateway      = module.vpcs[vpc.prefix].vpn_gateway
     }
   }
 }
