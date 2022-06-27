@@ -23,6 +23,25 @@ output "networks" {
 ##############################################################################
 
 ##############################################################################
+# VPC Flow Logs List
+##############################################################################
+
+output "vpc_flow_logs_data" {
+  description = "Information for Connecting VPC to flow logs using ICSE Flow Logs Module"
+  value = [
+    for vpc in var.vpcs :
+    {
+      flow_logs_bucket_name = vpc.flow_logs_bucket_name
+      vpc_prefix            = vpc.prefix
+      vpc_id                = module.vpcs[vpc.prefix].vpc_id
+      resource_group_id     = module.vpcs[vpc.prefix].vpc_resource_group_id
+    }
+  ]
+}
+
+##############################################################################
+
+##############################################################################
 # Security Groups
 ##############################################################################
 

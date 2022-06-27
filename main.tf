@@ -47,10 +47,10 @@ module "vpcs" {
   use_public_gateways          = each.value.use_public_gateways
   subnets                      = each.value.subnets
   vpn_gateway                  = each.value.vpn_gateway
-  use_manual_address_prefixes  = each.value.use_manual_address_prefixes == true ? true : length([
+  use_manual_address_prefixes = each.value.use_manual_address_prefixes == true ? true : length([
     # If use manual address prefixes is not set check each zone
     for zone in ["zone-1", "zone-2", "zone-3"] :
-    true if( 
+    true if(
       each.value.address_prefixes[zone] == null        # if prefix is null
       ? false                                          # false
       : length(each.value.address_prefixes[zone]) == 0 # if the length of prefixes is 0
