@@ -8,7 +8,7 @@ resource "ibm_tg_gateway" "transit_gateway" {
   name           = "${var.prefix}-transit-gateway"
   location       = var.region
   global         = false
-  resource_group = data.ibm_resource_group.resource_group[var.transit_gateway_resource_group].id
+  resource_group = var.use_resource_group_ids == true ? var.transit_gateway_resource_group : data.ibm_resource_group.resource_group[var.transit_gateway_resource_group].id
 
   timeouts {
     create = "30m"
