@@ -16,7 +16,7 @@ module "vpc_map" {
 ##############################################################################
 
 data "ibm_resource_group" "resource_group" {
-  for_each = toset(
+  for_each = var.use_resource_group_ids ? toset([]) : toset(
     distinct(
       concat(var.vpcs.*.resource_group, [var.transit_gateway_resource_group])
     )
@@ -36,7 +36,7 @@ module "vpcs" {
   prefix                       = "${var.prefix}-${each.value.prefix}"
   region                       = var.region
   tags                         = var.tags
-  resource_group_id            = data.ibm_resource_group.resource_group[each.value.resource_group].id
+  resource_group_id            = var.use_resource_group_ids == true ? each.value.resource_group : data.ibm_resource_group.resource_group[each.value.resource_group].id
   classic_access               = each.value.classic_access
   default_network_acl_name     = each.value.default_network_acl_name
   default_security_group_name  = each.value.default_security_group_name

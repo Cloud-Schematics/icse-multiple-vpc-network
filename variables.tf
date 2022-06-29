@@ -18,6 +18,12 @@ variable "tags" {
   default     = null
 }
 
+variable "use_resource_group_ids" {
+  description = "OPTIONAL - Use resource group IDs passed in from a parent module."
+  type        = string
+  default     = false
+}
+
 ##############################################################################
 
 ##############################################################################
