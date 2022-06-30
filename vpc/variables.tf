@@ -430,20 +430,7 @@ variable "security_groups" {
     })
   )
 
-  default = [{
-    name = "test-group"
-    rules = [
-      {
-        name      = "allow-ssh"
-        direction = "inbound"
-        remote    = "0.0.0.0/0"
-        tcp = {
-          port_max = 22
-          port_min = 22
-        }
-      }
-    ]
-  }]
+  default = []
 
   validation {
     error_message = "Each security group rule must have a unique name."
