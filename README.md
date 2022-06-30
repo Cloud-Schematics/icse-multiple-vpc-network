@@ -39,7 +39,7 @@ This template can create one or more VPCs in a single region. This module uses t
   type = list(
     object({
       prefix                      = string           # VPC prefix
-      resource_group              = optional(string) # Name of the resource group where VPC will be created
+      resource_group              = optional(string) # ID of the resource group where VPC will be created
       use_manual_address_prefixes = optional(bool)   # Assign CIDR prefixes manually
       classic_access              = optional(bool)   # Allow classic access
       default_network_acl_name    = optional(string) # Rename default network ACL
@@ -186,7 +186,7 @@ variable "security_groups" {
   type = list(
     object({
       name           = string           # Name
-      resource_group = optional(string) # Name of existing resource group to use for security groups
+      resource_group = optional(string) # resource group id to use for security groups
       vpc_name       = string           # Name of VPC where security groups will be added.
       rules = list(                     # List of rules
         object({
@@ -238,7 +238,7 @@ This template can optionally be used to create a transit gateway and use it to c
 Name                           | Type         | Description                                                                       | Sensitive | Default
 ------------------------------ | ------------ | --------------------------------------------------------------------------------- | --------- | --------------------------
 enable_transit_gateway         | bool         | Create transit gateway                                                            |           | true
-transit_gateway_resource_group | string       | Name of existing resource group to use                                            |           | Default
+transit_gateway_resource_group | string       | ID of existing resource group to use                                              |           | Default
 transit_gateway_connections    | list(string) | Transit gateway vpc connections. Will only be used if transit gateway is enabled. |           | ["management", "workload"]
 
 ---
