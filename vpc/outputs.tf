@@ -96,3 +96,14 @@ output "vpn_gateway" {
 }
 
 ##############################################################################
+
+##############################################################################
+# Transit Gateway Outputs
+##############################################################################
+
+output transit_gateway_id {
+  description = "ID of the transit gateway instance."
+  value       = var.enable_transit_gateway == true ? ibm_tg_gateway.transit_gateway[0].id : null
+}
+
+##############################################################################
