@@ -84,7 +84,7 @@ locals {
 ##############################################################################
 
 locals {
-  transit_gateway_valid_vpc_names = length([
+  transit_gateway_valid_vpc_names = var.enable_transit_gateway != true ? true : length([
     for connection in var.transit_gateway_connections :
     true if !contains(local.vpc_network_list, connection)
   ]) == 0
